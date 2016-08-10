@@ -10,15 +10,15 @@ class msgBoardGrid extends \Phalcon\Mvc\Controller
 {
     public function findAll()
     {
-        $sortField = 'id';
-        $sortOrder = 'desc';
-
-        $paginator = new Paginator([
-            "data" => \Models\MsgBoard::find(['order' => "$sortField $sortOrder"]),
-            "limit"=> 5,
-            "page" => 1
-        ]);
-        return $paginator->getPaginate();
+//        $sortField = 'id';
+//        $sortOrder = 'desc';
+//
+//        $paginator = new Paginator([
+//            "data" => \Models\MsgBoard::find(['order' => "$sortField $sortOrder"]),
+//            "limit"=> 5,
+//            "page" => 1
+//        ]);
+//        return $paginator->getPaginate();
     }
 
     public function render()
