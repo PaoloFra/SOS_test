@@ -1,0 +1,7 @@
+.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+    background-color: inherit;
+    box-shadow: none;
+    border: 0px;
+    cursor: text;
+    opacity: 1;
+}
