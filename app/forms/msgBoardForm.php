@@ -25,7 +25,7 @@ class msgBoardForm
 
         $validation->add(
             'name',
-            new PresenceOf( [ 'message' => 'The name is required' ] )
+            new PresenceOf( [ 'message' => 'Имя - обязательный параметн' ] )
         );
 
         $validation->add('name', new StringLength(array(
@@ -54,8 +54,8 @@ class msgBoardForm
         $validation->add('message', new StringLength(array(
             'max' => 200,
             'min' => 2,
-            'messageMaximum' => 'We don\'t like really long message',
-            'messageMinimum' => 'We want more than just their initials'
+            'messageMaximum' => 'Макс.длина - 200 символов',
+            'messageMinimum' => 'Слишком короткое сообщение'
         )));
 
         $messages = $validation->validate($r->getPost());
