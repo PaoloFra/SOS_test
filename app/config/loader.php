@@ -4,7 +4,7 @@ use Phalcon\Config\Adapter\Ini as IniConfig;
 
 //-------------------------
 
-define('ENVIRONMENT', 'LOCAL');
+define('ENVIRONMENT', 'PRODUCTION');
 
 $loader = new \Phalcon\Loader();
 switch (ENVIRONMENT) {
