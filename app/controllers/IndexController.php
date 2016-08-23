@@ -2,24 +2,30 @@
  
 class IndexController extends Phalcon\Mvc\Controller
 {
+
+    private $APIService;
+
     /**
      * Index action
      */
     public function indexAction()
     {
-        $grid = new \Grids\msgBoardGrid();
-        $this->view->page = $grid->render();
-        $this->view->headings = $grid->getColumns();
+//        $grid = new \Grids\msgBoardGrid();
+//        $this->view->page = $grid->render();
+//        $this->view->headings = $grid->getColumns();
     }
 
     /**
      * Store a record
      */
-    public function storeAction()
+    public function getEstimateAction()
     {
         $this->view->disable();
+
+        $this->APIService = new uberAPI();
+
         if ($this->request->isAjax()) {
-            echo \Forms\msgBoardForm::createMsg($this->request);
+            echo $this->APIService->getEstimate($this->request);
         }
     }
 

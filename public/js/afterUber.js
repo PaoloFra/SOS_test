@@ -2,19 +2,35 @@ var adding = false;
 
 (function( $ ){
 
-    $("#newMsg").on('click', function(){
-        if (adding) return;
-        adding = true;
-        $('<tr id="new"><td id="mid"></td><td><input type="text" placeholder="Имя" class="form-control" name="name_N" id="name_N"></td>' +
-            '<td><input type="text" placeholder="телефон" class="form-control" name="phone_N" id="phone_N"></td>' +
-            '<td><input type="text" placeholder="email" class="form-control" name="mail_N" id="mail_N"></td>' +
-            '<td><input type="text" placeholder="сообщение" class="form-control" name="message_N" id="message_N"></td>' +
-            '<td>'+$(new Date())[0].toISOString()+'</td>' +
-            '<td id="cntrls" width="100"><button type="button" class="btn btn-default btn-sm" onclick="saveConfirm()">' +
-            '<span class="glyphicon glyphicon-ok"></span></button>  ' +
-            '<button type="button" class="btn btn-warning btn-sm" onclick="dismiss()">' +
-            '<span class="glyphicon glyphicon-remove"></span></button></td></tr>').insertAfter($("tr:first"));
-        return;
+
+
+
+    $("#newRoute").on('click', function(){
+        var StartAddress = $('#StartAddress').val();
+        var EndAddress   = $('#EndAddress').val();
+        //----------------
+        $.ajax({
+            type: 'POST',
+            url: '/index/getEstimate',
+            data: {StartAddress: StartAddress, EndAddress: EndAddress},
+            success: function(data) {
+                //
+                if (data=='OK') {
+
+                }
+                else {
+                    // // alert(data);
+                    // $("#svli").fadeIn();
+                    // $("#errmsg").removeClass('btn btn-success').html('').show();
+                    // $("#errmsg").addClass('btn btn-warning').html(data).fadeOut({duration:5000});
+                }
+            },
+            error:  function(xhr, str){
+                // $("#svli").fadeIn();
+                // $("#errmsg").removeClass('btn btn-success').html('').show();
+                // $("#errmsg").addClass('btn btn-warning').html('Произошла ошибка :(' + xhr.responseCode).fadeOut({duration:5000});
+            }
+        });
     });
 
     $("#msglist").on('click', ".editMsg", function(){

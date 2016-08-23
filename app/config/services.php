@@ -180,6 +180,10 @@ $di->set(
     }
 );
 
+$di->set('uberAPI', function () {
+    return new UberAPI();
+});
+
 //***************************************
 
 

@@ -4,7 +4,7 @@ use Phalcon\Config\Adapter\Ini as IniConfig;
 
 //-------------------------
 
-define('ENVIRONMENT', 'PRODUCTION');
+define('ENVIRONMENT', 'LOCAL');
 
 $loader = new \Phalcon\Loader();
 switch (ENVIRONMENT) {
@@ -24,10 +24,9 @@ $config = new IniConfig(__DIR__ . "/$file.ini");
 $loader->registerDirs(
     array(
         __DIR__ . $config->application->controllersDir,
-        __DIR__ . $config->application->formsDir,
-        __DIR__ . $config->application->gridsDir,
+        __DIR__ . $config->application->viewsDir,
+        __DIR__ . $config->application->servicesDir,
         __DIR__ . $config->application->modelsDir,
-        __DIR__ . $config->application->filtersDir,
     )
 )->register();
 
