@@ -1,10 +1,6 @@
 <?php
 
-//namespace Grids;
-
-use Phalcon\Mvc\Model\Criteria;
-use Phalcon\Paginator\Adapter\Model as Paginator;
-
+//namespace Services;
 
 class UberAPI extends \Phalcon\Mvc\Controller
 {
