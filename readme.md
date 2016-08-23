@@ -1,6 +1,5 @@
 test project
 
-https://github.com/PaoloFra/SOS_test
+https://github.com/PaoloFra/test
 
-
-http://sos.destyle.com.ua/
+http://test.destyle.com.ua/
