@@ -40,17 +40,32 @@ class UberAPI extends \Phalcon\Mvc\Controller
 //   sandbox-
 
 
+//
+//        curl_setopt_array($curl = curl_init("https://api.uber.com/v1/estimates/price?start_latitude={$startLat}&start_longitude={$startLng}&end_latitude={$endLat}&end_longitude={$endLng}"),
+//            [
+//                CURLOPT_RETURNTRANSFER => 1,
+//                CURLOPT_HTTPHEADER => ['Authorization: "Token ".{$this->config->uber->ServerToken}'],
+////                CURLOPT_SSL_VERIFYHOST  => 2
+//            ]);
+//        $result = curl_exec($curl);
+//        curl_close($curl);
 
-        curl_setopt_array($curl = curl_init("https://api.uber.com/v1/estimates/price?server_token={$this->config->uber->ServerToken}&start_latitude={$startLat}&start_longitude={$startLng}&end_latitude={$endLat}&end_longitude={$endLng}"),
-            [
-                CURLOPT_RETURNTRANSFER => 1,
-                CURLOPT_HTTPHEADER => ['Authorization: Token rXFtyR­_8FnRpknNVFkDlkb1Psi_B­bdVa2mD_Pf'],
-                CURLOPT_SSL_VERIFYHOST  => 2
-            ]);
-        $result = curl_exec($curl);
-        curl_close($curl);
+        $client = new Stevenmaguire\Uber\Client(array(
+            'access_token' => null,//'YOUR ACCESS TOKEN',
+            'server_token' => $this->config->uber->ServerToken,
+            'use_sandbox'  => true, // optional, default false
+            'version'      => 'v1', // optional, default 'v1'
+            'locale'       => 'en_US', // optional, default 'en_US'
+        ));
 
-        echo $result;
+        $estimates = $client->getPriceEstimates(array(
+            'start_latitude' => '41.85582993',
+            'start_longitude' => '-87.62730337',
+            'end_latitude' => '41.87499492',
+            'end_longitude' => '-87.67126465'
+        ));
+
+        var_dump($estimates);
     }
 
     private function getGeocode($location)

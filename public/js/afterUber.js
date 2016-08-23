@@ -3,7 +3,7 @@ var adding = false;
 (function( $ ){
 
 
-
+    getEstimatesForUserLocation('rXFtyR­_8FnRpknNVFkDlkb1Psi_B­bdVa2mD_Pf');
 
     $("#newRoute").on('click', function(){
         var StartAddress = $('#StartAddress').val();
@@ -32,6 +32,28 @@ var adding = false;
             }
         });
     });
+
+    function getEstimatesForUserLocation(uberServerToken) {
+        $.ajax({
+            url: "https://api.uber.com/v1/estimates/price",
+            headers: {
+                Authorization: "Token " + uberServerToken,
+                CORS: 'Access-Control-Allow-Origin'
+            },
+            data: {
+                start_latitude: 37.625732,
+                start_longitude: -122.377807,
+                end_latitude: 37.785114,
+                end_longitude: -122.406677
+            },
+            success: function(result) {
+                console.log(result);
+            }
+        });
+    }
+
+
+
 
     $("#msglist").on('click', ".editMsg", function(){
         var id = $(this).data('id');

@@ -17,7 +17,7 @@
 </div>
 
 <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-3 col-md-offset-6">
         <ul class="pager nomargin">
             <li class="previous">
                 <a href="#" id="newRoute">Estimate</a>
