@@ -10,13 +10,11 @@ class IndexController extends Phalcon\Mvc\Controller
      */
     public function indexAction()
     {
-//        $grid = new \Grids\msgBoardGrid();
-//        $this->view->page = $grid->render();
-//        $this->view->headings = $grid->getColumns();
+
     }
 
     /**
-     * Store a record
+     * find Prices
      */
     public function getEstimateAction()
     {
@@ -29,14 +27,4 @@ class IndexController extends Phalcon\Mvc\Controller
         }
     }
 
-    /**
-     * Delete a record
-     */
-    public function removeAction()
-    {
-        $this->view->disable();
-        if ($this->request->isAjax()) {
-            echo \Forms\msgBoardForm::removeMsg($this->request->getPost("id", "int"));
-        }
-    }
 }
