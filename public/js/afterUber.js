@@ -7,12 +7,14 @@
         var StartAddress = $('#StartAddress').val();
         var EndAddress   = $('#EndAddress').val();
         //----------------
+        $('#estimate').html('<img src="/img/preloader.gif">');
         $.ajax({
             type: 'POST',
             url: '/index/getEstimate',
             data: {StartAddress: StartAddress, EndAddress: EndAddress},
             success: function(data) {
                 //
+                $('#estimate').html(data);
                 if (data=='OK') {
 
                 }

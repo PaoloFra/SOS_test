@@ -12,9 +12,6 @@ class UberAPI extends \Phalcon\Mvc\Controller
 
         $result = json_decode($this->getGeocode($startAddr));
 
-//        var_dump($result->results[0]->formatted_address);
-//        var_dump($result->results[0]->geometry->location);
-
         $startLat = $result->results[0]->geometry->location->lat;
         $startLng = $result->results[0]->geometry->location->lng;
 
@@ -25,27 +22,6 @@ class UberAPI extends \Phalcon\Mvc\Controller
         $endLat = $result->results[0]->geometry->location->lat;
         $endLng = $result->results[0]->geometry->location->lng;
 
-        $params = [
-            'start_latitude' => $startLat,
-            'start_longitude' => $startLng,
-            'end_latitude' => $endLat,
-            'end_longitude' => $endLng,
-            'server_token' => $this->config->uber->ServerToken
-        ];
-
-//   sandbox-
-
-
-//
-//        curl_setopt_array($curl = curl_init("https://api.uber.com/v1/estimates/price?start_latitude={$startLat}&start_longitude={$startLng}&end_latitude={$endLat}&end_longitude={$endLng}"),
-//            [
-//                CURLOPT_RETURNTRANSFER => 1,
-//                CURLOPT_HTTPHEADER => ['Authorization: "Token ".{$this->config->uber->ServerToken}'],
-////                CURLOPT_SSL_VERIFYHOST  => 2
-//            ]);
-//        $result = curl_exec($curl);
-//        curl_close($curl);
-
         $client = new Stevenmaguire\Uber\Client(array(
             'access_token' => null,//'YOUR ACCESS TOKEN',
             'server_token' => $this->config->uber->ServerToken,
@@ -54,14 +30,47 @@ class UberAPI extends \Phalcon\Mvc\Controller
             'locale'       => 'en_US', // optional, default 'en_US'
         ));
 
-        $estimates = $client->getPriceEstimates(array(
+        try {
+//            $estimates = $client->getPriceEstimates(array(
+//                'start_latitude' => $startLng,
+//                'start_longitude' => $startLng,
+//                'end_latitude' => $endLat,
+//                'end_longitude' => $endLng,
+//            ));
+
+            $estimates = $client->getPriceEstimates(array(
             'start_latitude' => '41.85582993',
             'start_longitude' => '-87.62730337',
             'end_latitude' => '41.87499492',
             'end_longitude' => '-87.67126465'
         ));
+        } catch (Exception $e) {
+            return "incorrect address or ".preg_replace('/^.+\[reason phrase\]/', '', $e->getMessage());
+        }
 
-        var_dump($estimates);
+        if (is_array($estimates->prices)) {
+            $estimatedPrices = $estimates->prices;
+            foreach ($estimatedPrices as $d) {
+                if ( 'Metered' == $d->estimate) {
+                    $d->estimate2 = $d->estimate;
+                } elseif ( preg_match('/\-/', $d->estimate)) {
+                    $sign = preg_replace('/[\.\-\d]/', '', $d->estimate);
+                    $dTmp = explode('-', preg_replace('/[^\.\-\d]/', '', $d->estimate));
+                    $dTmp = array_map(
+                        function($price) { return number_format($price * 0.8, 0); },
+                        $dTmp
+                    );
+                    $d->estimate2 = $sign.implode('-', $dTmp);
+                } else {
+                    $sign = preg_replace('/[\.\-\d]/', '', $d->estimate);
+                    $d->estimate2 = $sign.number_format(preg_replace('/[^\.\d]/', '', $d->estimate) * 0.8, 2);
+                }
+                $d->display_name2 = 'After'.ucfirst($d->display_name);
+            }
+        }
+        echo $this->simple_view->render('index/_showEstimates', [
+            'products' => $estimatedPrices
+        ]);
     }
 
     private function getGeocode($location)
