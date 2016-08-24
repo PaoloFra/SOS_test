@@ -1,7 +1,5 @@
 <?php
 
-//namespace Services;
-
 class UberAPI extends \Phalcon\Mvc\Controller
 {
     public function getEstimate()
@@ -32,20 +30,20 @@ class UberAPI extends \Phalcon\Mvc\Controller
 
         try {
             // Real data
-//            $estimates = $client->getPriceEstimates([
-//                'start_latitude' => $startLng,
-//                'start_longitude' => $startLng,
-//                'end_latitude' => $endLat,
-//                'end_longitude' => $endLng,
-//            ]);
+            $estimates = $client->getPriceEstimates([
+                'start_latitude' => $startLng,
+                'start_longitude' => $startLng,
+                'end_latitude' => $endLat,
+                'end_longitude' => $endLng,
+            ]);
 
             // Test data
-            $estimates = $client->getPriceEstimates([
-                'start_latitude' => '41.85582993',
-                'start_longitude' => '-87.62730337',
-                'end_latitude' => '41.87499492',
-                'end_longitude' => '-87.67126465'
-            ]);
+//            $estimates = $client->getPriceEstimates([
+//                'start_latitude' => '41.85582993',
+//                'start_longitude' => '-87.62730337',
+//                'end_latitude' => '41.87499492',
+//                'end_longitude' => '-87.67126465'
+//            ]);
         } catch (Exception $e) {
             return "Incorrect address or " . preg_replace('/^.+\[reason phrase\]/', '', $e->getMessage());
         }
