@@ -10,15 +10,15 @@ class UberAPI extends \Phalcon\Mvc\Controller
 
         $result = json_decode($this->getGeocode($startAddr));
 
-        $startLat = $result->results[0]->geometry->location->lat;
-        $startLng = $result->results[0]->geometry->location->lng;
+        $startLat = $startAddr ? $result->results[0]->geometry->location->lat : '41.85582993';
+        $startLng = $startAddr ? $result->results[0]->geometry->location->lng : '-87.62730337';
 
         $endAddr = urlencode($r->getPost('EndAddress', 'string'));
 
         $result = json_decode($this->getGeocode($endAddr));
 
-        $endLat = $result->results[0]->geometry->location->lat;
-        $endLng = $result->results[0]->geometry->location->lng;
+        $endLat = $startAddr ? $result->results[0]->geometry->location->lat : '41.87499492';
+        $endLng = $startAddr ? $result->results[0]->geometry->location->lng : '-87.67126465';
 
         $client = new Stevenmaguire\Uber\Client(array(
             'access_token' => null,//'YOUR ACCESS TOKEN',

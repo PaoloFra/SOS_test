@@ -20,7 +20,7 @@ class IndexController extends Phalcon\Mvc\Controller
     {
         $this->view->disable();
 
-        $this->APIService = new uberAPI();
+        $this->APIService = new UberAPI();
 
         if ($this->request->isAjax()) {
             echo $this->APIService->getEstimate($this->request);
