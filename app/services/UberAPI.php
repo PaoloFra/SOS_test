@@ -17,8 +17,8 @@ class UberAPI extends \Phalcon\Mvc\Controller
 
         $result = json_decode($this->getGeocode($endAddr));
 
-        $endLat = $startAddr ? $result->results[0]->geometry->location->lat : '41.87499492';
-        $endLng = $startAddr ? $result->results[0]->geometry->location->lng : '-87.67126465';
+        $endLat = $endAddr ? $result->results[0]->geometry->location->lat : '41.87499492';
+        $endLng = $endAddr ? $result->results[0]->geometry->location->lng : '-87.67126465';
 
         $client = new Stevenmaguire\Uber\Client(array(
             'access_token' => null,//'YOUR ACCESS TOKEN',
@@ -44,11 +44,12 @@ class UberAPI extends \Phalcon\Mvc\Controller
 //                'end_latitude' => '41.87499492',
 //                'end_longitude' => '-87.67126465'
 //            ]);
+
         } catch (Exception $e) {
             return "Incorrect address or " . preg_replace('/^.+\[reason phrase\]/', '', $e->getMessage());
         }
 
-        if (is_array($estimates->prices)) {
+        if (is_array($estimates->prices) && !empty($estimates->prices)) {
             $estimatedPrices = $estimates->prices;
             foreach ($estimatedPrices as $d) {
                 if ('Metered' == $d->estimate) {
