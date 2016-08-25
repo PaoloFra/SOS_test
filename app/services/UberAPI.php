@@ -31,7 +31,7 @@ class UberAPI extends \Phalcon\Mvc\Controller
         try {
             // Real data
             $estimates = $client->getPriceEstimates([
-                'start_latitude' => $startLng,
+                'start_latitude' => $startLat,
                 'start_longitude' => $startLng,
                 'end_latitude' => $endLat,
                 'end_longitude' => $endLng,
