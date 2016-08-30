@@ -52,7 +52,7 @@
     {% if page.items %}
         {% for msg in page.items %}
             <tr >
-                <td><input type="text" placeholder="Имя" class="form-control" id="name{{ msg.id }}" value="{{ msg.id }}. {{ msg.cx }}" disabled="disabled"></td>
+                <td><input type="text" placeholder="Имя" class="form-control" id="name{{ msg.id }}" value="{{ msg.cx }}" disabled="disabled"></td>
                 <td><input type="text" placeholder="телефон" class="form-control" id="phone{{ msg.id }}" value="{{ msg.rx }}" disabled="disabled"></td>
                 <td><input type="text" placeholder="email" class="form-control" id="mail{{ msg.id }}" value="{{ msg.title }}" disabled="disabled"></td>
                 <td>{% if msg.TbRel %}
