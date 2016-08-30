@@ -31,4 +31,3 @@ $loader->registerDirs(
     )
 )->register();
 
-
