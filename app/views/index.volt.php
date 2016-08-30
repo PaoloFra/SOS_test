@@ -14,7 +14,6 @@
 </head>
 <body>
 <?php echo $this->tag->javascriptInclude('http://code.jquery.com/jquery-2.1.0.min.js', false); ?>
-
 <?php echo $this->tag->javascriptInclude('js/bootstrap.min.js'); ?>
 <?php echo $this->tag->javascriptInclude('js/bootstrap-datepicker.js'); ?>
 
