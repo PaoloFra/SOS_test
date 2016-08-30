@@ -52,10 +52,6 @@ class TbSourceGrid extends \Phalcon\Mvc\Controller
             $parameters['qry']['order'] = "$sortField $sortOrder";
         }
 
-//        if ($cache) {
-////            $parameters['qry']['cache'] = [ "lifetime" => 3600, "key" => "vh-key" ];
-//        }
-
         switch ($mode) {
             case 'ORM' :
                 unset($parameters['qry']['cache']);

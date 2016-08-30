@@ -191,7 +191,6 @@ $di->set('uberAPI', function () {
 
 //***************************************
 
-
 $di->setShared('modelsCache', function () {
 
     $frontCache = new FrontData(

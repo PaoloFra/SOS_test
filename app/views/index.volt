@@ -14,7 +14,6 @@
 </head>
 <body>
 {{ javascript_include('http://code.jquery.com/jquery-2.1.0.min.js', false) }}
-{#{{ javascript_include('http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js', false) }}#}
 {{ javascript_include('js/bootstrap.min.js') }}
 {{ javascript_include('js/bootstrap-datepicker.js') }}
 
