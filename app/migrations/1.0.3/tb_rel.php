@@ -6,9 +6,9 @@ use Phalcon\Db\Reference;
 use Phalcon\Mvc\Model\Migration;
 
 /**
- * Class TbRelMigration_101
+ * Class TbRelMigration_103
  */
-class TbRelMigration_101 extends Migration
+class TbRelMigration_103 extends Migration
 {
     /**
      * Define the table structure
@@ -37,7 +37,8 @@ class TbRelMigration_101 extends Migration
                     )
                 ),
                 'indexes' => array(
-                    new Index('cx', array('cx'), null)
+                    new Index('cx', array('cx'), null),
+                    new Index('ndc', array('ndc'), null)
                 ),
                 'options' => array(
                     'TABLE_TYPE' => 'BASE TABLE',

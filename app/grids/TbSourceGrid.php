@@ -2,7 +2,7 @@
 
 namespace Grids;
 
-use Phalcon\Mvc\Model\Criteria;
+//use Phalcon\Mvc\Model\Criteria;
 use Phalcon\Paginator\Adapter\Model as Paginator;
 
 
@@ -19,6 +19,7 @@ class TbSourceGrid extends \Phalcon\Mvc\Controller
 //            "page" => 1
 //        ]);
 //        return $paginator->getPaginate();
+//        "cache" => array("lifetime" => 3600, "key" => "my-find-key")
     }
 
     public function render()
@@ -43,15 +44,16 @@ class TbSourceGrid extends \Phalcon\Mvc\Controller
 
         $numberPage = 1;
         if ($r->isPost()) {
-            $query = Criteria::fromInput($this->di, '\Models\TbSource', $r->getPost());
-            $parameters['qry'] = $query->getParams();
+            $term = $r->getPost("term", "string")?:'';
+            $parameters['qry']['conditions'] = "title LIKE :term: ";
+            $parameters['qry']['bind'] = [ "term" => $term.'%'];
         } else {
             $numberPage = $r->getQuery("page", "int");
             $parameters['sort']['sortField'] = $sortField = $r->getQuery("sort", "alphanum")?:$parameters['sort']['sortField'];
             $parameters['sort']['sortOrder'] = $sortOrder = $r->getQuery("order", "alphanum")?:$parameters['sort']['sortOrder'];
             $parameters['qry']['order'] = "$sortField $sortOrder";
         }
-
+var_dump($parameters['qry']);
         $this->persistent->parameters = $parameters;
 
         $paginator = new Paginator([

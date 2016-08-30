@@ -2,7 +2,10 @@
 
 namespace Models;
 
-class TbSource extends \Phalcon\Mvc\Model
+use Phalcon\Mvc\Model;
+use Phalcon\Mvc\Model\Relation;
+
+class TbSource extends Model
 {
 
     /**
@@ -57,7 +60,15 @@ class TbSource extends \Phalcon\Mvc\Model
 
     public function initialize()
     {
-        $this->hasMany('cx', 'TbRel', 'cx');
+        $this->hasMany('cx', '\Models\TbRel', 'cx',
+            [
+                "alias" => "TbRel",
+//                "foreignKey" => [
+//                    "allowNulls" => true,
+//                    "action" => Relation::ACTION_CASCADE,
+//                    "message"    => "cx нет в модели TbRel"
+//                ]
+            ]);
     }
 
     /**

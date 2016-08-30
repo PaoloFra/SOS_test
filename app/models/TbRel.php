@@ -2,7 +2,10 @@
 
 namespace Models;
 
-class TbRel extends \Phalcon\Mvc\Model
+use Phalcon\Mvc\Model;
+use Phalcon\Mvc\Model\Relation;
+
+class TbRel extends Model
 {
 
     /**
@@ -29,7 +32,7 @@ class TbRel extends \Phalcon\Mvc\Model
 
     public function initialize()
     {
-//        $this->hasMany('cx', 'TbSource', 'cx');
+        $this->hasMany('cx', '\Models\TbSource', 'cx', [ "alias" => "TbSource" ]);
     }
 
     /**
