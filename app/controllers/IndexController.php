@@ -2,9 +2,7 @@
  
 class IndexController extends Phalcon\Mvc\Controller
 {
-    /**
-     * Index action
-     */
+
     public function indexAction()
     {
         $start = microtime(TRUE);

@@ -33,8 +33,6 @@
     <div class="col-md-4" id="errmsg"><hr>time elapsed: {{ timer }} sec.<hr></div>
 </div>
 
-
-
 <table class="table table-bordered table-striped" align="center" id="msglist">
     <thead>
     <tr>

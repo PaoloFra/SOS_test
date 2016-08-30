@@ -187,7 +187,6 @@ $di->set(
 
 //***************************************
 
-
 $di->setShared('modelsCache', function () {
 
     $frontCache = new FrontData(
