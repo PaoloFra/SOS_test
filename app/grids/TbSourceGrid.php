@@ -39,9 +39,10 @@ class TbSourceGrid extends \Phalcon\Mvc\Controller
         $parameters = $this->persistent->parameters;
 
         $numberPage = 1;
+        $term = $parameters['term'];
 
         if ($r->isPost()) {
-            $term = $r->getPost("term", "string")?:'';
+            $term = preg_replace('/[^\w\d\s]/', '', $r->getPost("term", "string"))?:'';
             $parameters['qry']['conditions'] = "title LIKE :term: ";
             $parameters['qry']['bind'] = [ "term" => $term.'%'];
             $parameters['term'] = $term;
@@ -59,7 +60,7 @@ class TbSourceGrid extends \Phalcon\Mvc\Controller
                 break;
 
             case 'ORMC' :
-                $cacheKey = 'vh-key_'.$parameters['sort']['sortField'].'_'.$parameters['sort']['sortOrder'];
+                $cacheKey = 'vh-key_'.$parameters['sort']['sortField'].'_'.$parameters['sort']['sortOrder'].'_'.preg_replace('/\s/', '_', $term);
                 $parameters['qry']['cache'] = [ "lifetime" => 3600, "key" => $cacheKey ];
 //                $parameters['qry']['limit'] = 5000000 ;
                 $vhData = \Models\TbSource::find($parameters['qry']);
