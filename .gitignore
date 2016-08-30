@@ -1,7 +1,7 @@
 .idea
 /vendor
 /composer.lock
-/cache
+/cache/vh*
 .DS_Store
 /app/config/config.dev.php
 /app/config/config.php
