@@ -7,9 +7,13 @@ class IndexController extends Phalcon\Mvc\Controller
      */
     public function indexAction()
     {
-        $grid = new \Grids\msgBoardGrid();
+        $start = microtime(TRUE);
+
+        $grid = new \Grids\TbSourceGrid();
         $this->view->page = $grid->render();
         $this->view->headings = $grid->getColumns();
+
+        echo "time: ", microtime(TRUE) - $start, "\n";
     }
 
     /**

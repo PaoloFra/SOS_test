@@ -6,7 +6,7 @@ use Phalcon\Mvc\Model\Criteria;
 use Phalcon\Paginator\Adapter\Model as Paginator;
 
 
-class msgBoardGrid extends \Phalcon\Mvc\Controller
+class TbSourceGrid extends \Phalcon\Mvc\Controller
 {
     public function findAll()
     {
@@ -14,7 +14,7 @@ class msgBoardGrid extends \Phalcon\Mvc\Controller
 //        $sortOrder = 'desc';
 //
 //        $paginator = new Paginator([
-//            "data" => \Models\MsgBoard::find(['order' => "$sortField $sortOrder"]),
+//            "data" => \Models\TbSource::find(['order' => "$sortField $sortOrder"]),
 //            "limit"=> 5,
 //            "page" => 1
 //        ]);
@@ -43,7 +43,7 @@ class msgBoardGrid extends \Phalcon\Mvc\Controller
 
         $numberPage = 1;
         if ($r->isPost()) {
-            $query = Criteria::fromInput($this->di, '\Models\MsgBoard', $r->getPost());
+            $query = Criteria::fromInput($this->di, '\Models\TbSource', $r->getPost());
             $parameters['qry'] = $query->getParams();
         } else {
             $numberPage = $r->getQuery("page", "int");
@@ -55,7 +55,7 @@ class msgBoardGrid extends \Phalcon\Mvc\Controller
         $this->persistent->parameters = $parameters;
 
         $paginator = new Paginator([
-            "data" => \Models\MsgBoard::find($parameters['qry']),
+            "data" => \Models\TbSource::find($parameters['qry']),
             "limit"=> 10,
             "page" => $numberPage
         ]);
@@ -68,7 +68,7 @@ class msgBoardGrid extends \Phalcon\Mvc\Controller
         $sortField = $parameters['sort']['sortField'];
         $sortOrder = $parameters['sort']['sortOrder'];
         // sorting and table headers mapping
-        $headMapping = \Models\MsgBoard::columnHeaders();
+        $headMapping = \Models\TbSource::columnHeaders();
         // get sorting header and order arrow
         $headings = [];
         foreach ($headMapping as $field => $name) {
