@@ -1,5 +1,3 @@
-{{ content() }}
-
 <div class="row">
     <div class="col-md-1">
         <a href="?reset=1" class="nohoverdec">
@@ -8,13 +6,13 @@
             </button>
         </a>
     </div>
-    <div class="col-md-7">
+    <div class="col-md-4">
         {{  form('', 'id': 'search-form', 'class': 'form-inline') }}
         <div class="row">
             <div class="col-md-9">
                 <div class="form-group">
                     <div class="input-group">
-                        {{  text_field('term', 'class': 'form-control', 'placeholder': 'title', 'value': 'title 1')}}
+                        {{  text_field('term', 'class': 'form-control', 'placeholder': 'title 1')}}
                         <span class="input-group-btn">
                             <button class="btn btn-default" type="submit">
                                 <span class="glyphicon glyphicon-search"></span>
@@ -26,8 +24,14 @@
         </div>
         {{ end_form() }}
     </div>
+    <div class="col-md-2"><a href="/" class="btn btn-info">ORM</a> </div>
+    <div class="col-md-2"><a href="/index/sql" class="btn btn-info">SQL</a> </div>
+    <div class="col-md-2"><a href="/index/ormc" class="btn btn-info">ORM cached</a> </div>
 </div>
-<div class="row" id="svli"><div class="col-md-3 col-md-offset-4" id="errmsg"></div></div>
+<div class="row" id="svli">
+    <div class="col-md-3"><h2>{{ mode }}</h2></div>
+    <div class="col-md-4" id="errmsg"><hr>time elapsed: {{ timer }} sec.<hr></div>
+</div>
 
 
 
