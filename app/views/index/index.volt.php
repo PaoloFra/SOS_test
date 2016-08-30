@@ -52,9 +52,9 @@
     <?php if ($page->items) { ?>
         <?php foreach ($page->items as $msg) { ?>
             <tr >
-                <td><input type="text" placeholder="Имя" class="form-control" id="name<?php echo $msg->id; ?>" value="<?php echo $msg->id; ?>. <?php echo $msg->cx; ?>" disabled="disabled"></td>
-                <td><input type="text" placeholder="телефон" class="form-control" id="phone<?php echo $msg->id; ?>" value="<?php echo $msg->rx; ?>" disabled="disabled"></td>
-                <td><input type="text" placeholder="email" class="form-control" id="mail<?php echo $msg->id; ?>" value="<?php echo $msg->title; ?>" disabled="disabled"></td>
+                <td><input type="text" placeholder="cx" class="form-control" id="name<?php echo $msg->id; ?>" value="<?php echo $msg->cx; ?>" disabled="disabled"></td>
+                <td><input type="text" placeholder="rx" class="form-control" id="phone<?php echo $msg->id; ?>" value="<?php echo $msg->rx; ?>" disabled="disabled"></td>
+                <td><input type="text" placeholder="title" class="form-control" id="mail<?php echo $msg->id; ?>" value="<?php echo $msg->title; ?>" disabled="disabled"></td>
                 <td><?php if ($msg->TbRel) { ?>
                         <?php foreach ($msg->TbRel as $rel) { ?>
                         <div><?php echo $rel->ndc; ?></div>
