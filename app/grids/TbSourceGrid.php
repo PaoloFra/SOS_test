@@ -22,7 +22,7 @@ class TbSourceGrid extends \Phalcon\Mvc\Controller
 //        "cache" => array("lifetime" => 3600, "key" => "my-find-key")
     }
 
-    public function render()
+    public function render( $cache = false)
     {
         $r = $this->request;
 
@@ -53,7 +53,13 @@ class TbSourceGrid extends \Phalcon\Mvc\Controller
             $parameters['sort']['sortOrder'] = $sortOrder = $r->getQuery("order", "alphanum")?:$parameters['sort']['sortOrder'];
             $parameters['qry']['order'] = "$sortField $sortOrder";
         }
+
+        if ($cache) {
+            $parameters['qry']['cache'] = [ "lifetime" => 3600, "key" => "vh-key" ];
+        }
+
 var_dump($parameters['qry']);
+
         $this->persistent->parameters = $parameters;
 
         $paginator = new Paginator([

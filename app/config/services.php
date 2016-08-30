@@ -183,7 +183,7 @@ $di->set(
 //***************************************
 
 
-$di->setShared('cache', function () {
+$di->set('cache', function () {
 
     $frontCache = new FrontData(
         array(

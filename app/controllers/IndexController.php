@@ -10,7 +10,7 @@ class IndexController extends Phalcon\Mvc\Controller
         $start = microtime(TRUE);
 
         $grid = new \Grids\TbSourceGrid();
-        $this->view->page = $grid->render();
+        $this->view->page = $grid->render(true);
         $this->view->headings = $grid->getColumns();
 
 //        echo "time: ", microtime(TRUE) - $start, "\n";
