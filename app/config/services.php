@@ -86,7 +86,12 @@ $di->set('db', function () use ($di) {
         "port" => $config->database->port,
         "username" => $config->database->username,
         "password" => $config->database->password,
-        "dbname" => $config->database->dbname
+        "dbname" => $config->database->dbname,
+        'options' => [
+            \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
+            \PDO::ATTR_PERSISTENT => false,
+            \PDO::MYSQL_ATTR_INIT_COMMAND => 'SET names utf8'
+        ]
     ));
 });
 
@@ -187,7 +192,7 @@ $di->set('uberAPI', function () {
 //***************************************
 
 
-$di->setShared('cache', function () {
+$di->setShared('modelsCache', function () {
 
     $frontCache = new FrontData(
         array(
