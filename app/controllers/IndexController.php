@@ -13,7 +13,7 @@ class IndexController extends Phalcon\Mvc\Controller
         $this->view->page = $grid->render();
         $this->view->headings = $grid->getColumns();
 
-        echo "time: ", microtime(TRUE) - $start, "\n";
+//        echo "time: ", microtime(TRUE) - $start, "\n";
     }
 
     /**

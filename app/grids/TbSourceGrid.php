@@ -28,13 +28,13 @@ class TbSourceGrid extends \Phalcon\Mvc\Controller
         if (!is_array($this->persistent->parameters) || $r->getQuery("reset", "int")) {
             $this->persistent->parameters = [
                 'qry' => [
-                    'order' => "id desc"
+                    'order' => "id asc"
                 ],
                 'sort' => [
                     'page'  => 1,
                     'perpage' => 10,
                     'sortField' => 'id',
-                    'sortOrder' => 'desc'
+                    'sortOrder' => 'asc'
                 ]
             ];
         }

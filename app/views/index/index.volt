@@ -18,25 +18,10 @@
     <div class="col-md-7">
         {{  form('', 'id': 'search-form', 'class': 'form-inline') }}
         <div class="row">
-            <div class="col-md-3">
-                <div class="form-group">
-                    {{  text_field('name', 'class' : 'form-control', 'placeholder' : 'Имя')}}
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    {{  text_field('phone', 'class' : 'form-control', 'placeholder' : 'телефон')}}
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    {{  text_field('message', 'class' : 'form-control', 'placeholder' : 'сообщение')}}
-                </div>
-            </div>
-            <div class="col-md-3">
+            <div class="col-md-9">
                 <div class="form-group">
                     <div class="input-group">
-                        {{  text_field('mail', 'class' : 'form-control', 'placeholder' : 'e-mail')}}
+                        {{  text_field('name', 'class': 'form-control', 'placeholder': 'title', 'value': 'title 1')}}
                         <span class="input-group-btn">
                             <button class="btn btn-default" type="submit">
                                 <span class="glyphicon glyphicon-search"></span>
@@ -55,7 +40,7 @@
 
 <table class="table table-bordered table-striped" align="center" id="msglist">
     <thead>
-    <tr><th></th>
+    <tr>
         {% for head in headings %}
             <th>
                 {% if head['sort'] == false %}
@@ -65,7 +50,6 @@
                 {% endif %}
             </th>
         {% endfor %}
-        <th>Действия</th>
 
     </tr>
     </thead>
@@ -73,16 +57,13 @@
     {% if page.items %}
         {% for msg in page.items %}
             <tr >
-                <td>{{ msg.id }}.</td>
-                <td><input type="text" placeholder="Имя" class="form-control" id="name{{ msg.id }}" value="{{ msg.name }}" disabled="disabled"></td>
-                <td><input type="text" placeholder="телефон" class="form-control" id="phone{{ msg.id }}" value="{{ msg.phone }}" disabled="disabled"></td>
-                <td><input type="text" placeholder="email" class="form-control" id="mail{{ msg.id }}" value="{{ msg.mail }}" disabled="disabled"></td>
-                <td><input type="text" placeholder="сообщение" class="form-control" id="message{{ msg.id }}" value="{{ msg.message }}" disabled="disabled"></td>
-                <td>{{ date('d.m.Y H:i:s', strtotime(msg.date)) }}</td>
-                <td width="100">
-                    <a type="button" class="btn btn-default btn-sm editMsg" data-id="{{ msg.id }}"><span class="glyphicon glyphicon-pencil"></span></a>
-                <a type="button" class="btn btn-danger btn-sm delMsg" data-id="{{ msg.id }}"><span class="glyphicon glyphicon-trash"></span></a>
-                </td>
+                <td><input type="text" placeholder="Имя" class="form-control" id="name{{ msg.id }}" value="{{ msg.cx }}" disabled="disabled"></td>
+                <td><input type="text" placeholder="телефон" class="form-control" id="phone{{ msg.id }}" value="{{ msg.rx }}" disabled="disabled"></td>
+                <td><input type="text" placeholder="email" class="form-control" id="mail{{ msg.id }}" value="{{ msg.title }}" disabled="disabled"></td>
+                {#<td>{% if msg.TbRel.ndc %}{% for rel in msg.TbRel.ndc %}#}
+                        {#<div>{{ rel.ndc }}</div>#}
+                    {#{% endfor %}{% endif %}#}
+                {#</td>#}
             </tr>
         {% endfor %}
     {% endif %}
@@ -98,12 +79,6 @@
     <li class="disabled"><a href="#">{{ page.current}} / {{page.total_pages}}</a></li>
 </ul>
 
-{{ javascript_include('js/sos.js') }}
-<script type="text/javascript">
-    $(document).ready(function(){
-        $('#datepicker').datepicker({
-            format: "yyyy-mm-dd"
-        });
-    });
-</script>
+{#{{ javascript_include('js/sos.js') }}#}
+
 

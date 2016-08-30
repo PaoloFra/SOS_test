@@ -1,5 +1,7 @@
 <?php
 
+namespace Models;
+
 class TbSource extends \Phalcon\Mvc\Model
 {
 
@@ -64,11 +66,10 @@ class TbSource extends \Phalcon\Mvc\Model
     public static function columnHeaders()
     {
         return [
-            'name' => 'Имя',
-            'phone' => 'телефон',
-            'mail' => 'email',
-            'message' => 'сообщение',
-            'date' => 'дата'
+            'cx' => 'cx',
+            'rx' => 'rx',
+            'title' => 'title',
+            'NDC' => 'NDC'
         ];
     }
 

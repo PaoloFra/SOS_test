@@ -1,5 +1,7 @@
 <?php
 
+namespace Models;
+
 class TbRel extends \Phalcon\Mvc\Model
 {
 
@@ -27,7 +29,7 @@ class TbRel extends \Phalcon\Mvc\Model
 
     public function initialize()
     {
-        $this->hasMany('cx', 'TbSource', 'cx');
+//        $this->hasMany('cx', 'TbSource', 'cx');
     }
 
     /**
