@@ -7,9 +7,11 @@ http://test.destyle.com.ua/
 famework: Phalcon 2.0.13
 
 Результат запроса
+<pre>
     SELECT ts.*, tr.ndc FROM `tb_source` ts
     LEFT JOIN `tb_rel` tr ON tr.cx=ts.cx
     WHERE ts.title LIKE 'title 1%'
+</pre>
 представлен в трех вариантах таблиц (используя ORM, прямой SQL-запрос, ORM с кешированием данных 
 в зависимости от сортировки и строки запроса) с сортировкой, разбивкой на страницы 
 и произвольным поиском по началу поля 'title'.    
@@ -39,6 +41,7 @@ SQL-режим показывает наихудшие результаты из
 В таблицу tb_source добавлен первичный ключ id (migrations/1.0.3/).
 Без этого подсчитать количество не представляется возможным.
 
+<pre>
 SELECT COUNT(DISTINCT tt.id) FROM
 (
     SELECT 
@@ -50,5 +53,6 @@ SELECT COUNT(DISTINCT tt.id) FROM
     GROUP BY ts.id, tr.ndc
     HAVING COUNT(tr.ndc)>2
 ) tt;
+</pre>
 
 
